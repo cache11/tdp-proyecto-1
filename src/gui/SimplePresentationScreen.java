@@ -164,11 +164,19 @@ public class SimplePresentationScreen extends JFrame {
 		horaEjecucion = new JLabel("New label");
 		horaEjecucion.setFont(new Font("Tahoma", Font.BOLD, 11));
 		horaEjecucion.setBounds(15, 197, 414, 14);
-		String fecha  = ""+LocalDate.now();
-		Calendar calendario = Calendar.getInstance();
-		String hora = calendario.get(Calendar.HOUR_OF_DAY)+":"+calendario.get(Calendar.MINUTE)+":"+calendario.get(Calendar.SECOND);
-		horaEjecucion.setText("La hora de ejecucion es "+fecha+" a las "+hora);
+		agregarFechaYHora(horaEjecucion);
 		contentPane.add(horaEjecucion);
 		
+	}
+	
+	private void agregarFechaYHora(JLabel label) {
+		Calendar calendario = Calendar.getInstance();
+		String hora = calendario.get(Calendar.HOUR_OF_DAY)+":"+calendario.get(Calendar.MINUTE)+":"+calendario.get(Calendar.SECOND);
+		
+		String fecha = ""+LocalDate.now();
+		String fechaParte[] = fecha.split("-");
+		fecha = fechaParte[2] +"-"+fechaParte[1] +"-"+fechaParte[0];
+        
+        label.setText("Esta ventana fue generada el "+fecha+" a las "+hora);
 	}
 }
